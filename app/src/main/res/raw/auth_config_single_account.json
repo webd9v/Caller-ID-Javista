@@ -1,0 +1,15 @@
+{
+"client_id" : "dcf26063-fd32-454b-9280-90f45a3764dd",
+"authorization_user_agent" : "DEFAULT",
+"redirect_uri" : "msauth://com.example.calleridfinal/dOf5S49ct7ZcoXIgL1K7omnKS2A%3D",
+"account_mode" : "SINGLE",
+"authorities" : [
+{
+"type": "AAD",
+"audience": {
+"type": "AzureADMyOrg",
+"tenant_id": "79395e69-981c-458c-8c45-20f47020a5a5"
+}
+}
+]
+}
