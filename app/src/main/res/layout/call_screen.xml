@@ -42,7 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:text="Caller's Info"
+                android:text="Incoming Call "
                 android:textSize="19sp"
                 android:layout_gravity="top"
                 android:layout_marginBottom="30sp"

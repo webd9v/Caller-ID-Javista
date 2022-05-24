@@ -27,12 +27,16 @@ public class InterceptCall extends BroadcastReceiver {
                         System.out.println("++++++++++HashInfo from intercept:"+contactInfo);
 
 
-                        contactInfo=contactInfo.split(":")[0];
+                        String phoneNumber=contactInfo.split(":")[0];
+                        String address=contactInfo.split(":")[1];
+                        String email=contactInfo.split(":")[2];
                         isFound=true;
                         Intent intent1 = new Intent(context, CallScreen.class);
                         intent1.putExtra("isFound",isFound);
-                        intent1.putExtra("fullname",contactInfo);
+                        intent1.putExtra("fullname",phoneNumber);
                         intent1.putExtra("phoneNumber", incomingNumber);
+                        intent1.putExtra("address",address);
+                        intent1.putExtra("email",email);
                         intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
                         context.startActivity(intent1);

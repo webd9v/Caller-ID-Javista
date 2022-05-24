@@ -23,7 +23,15 @@ public class CallScreen extends AppCompatActivity {
             System.out.println("isFound:"+isFound+" number:"+number);
         }else{
             String fullname=bundle.getString("fullname");
-            outputContactInfo.setText("Incoming call from "+fullname+".\nCaller's number is: "+number);
+            String address=bundle.getString("address");
+            String email=bundle.getString("email");
+            if(address==null){
+                address="No information";
+            }
+            if(email==null){
+                email="No information";
+            }
+            outputContactInfo.setText(fullname+"\n"+number+"\n"+"Address: "+address+"\n"+"Email: "+email);
             System.out.println("isFound:"+isFound+" number:"+number+" name:"+fullname);
 
         }

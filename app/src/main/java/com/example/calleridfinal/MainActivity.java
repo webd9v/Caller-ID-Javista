@@ -284,18 +284,18 @@ public class MainActivity extends AppCompatActivity {
                 JSONArray values = response.optJSONArray("value");
                 JSONObject contactObject;
 
-                //mobilephone , fullname , birthdate, emailaddress1
-                String mobilephone,fullname,birthdate,emailaddress1;
+                //mobilephone , fullname , addressComposite, emailaddress1
+                String mobilephone,fullname,addressComposite,emailaddress1;
                 for(int i = 0;i<values.length();i++){
                     contactObject=values.optJSONObject(i);
                     mobilephone=contactObject.optString("mobilephone");
                     fullname=contactObject.optString("fullname");
-                    birthdate=contactObject.optString("birthdate");
+                    addressComposite=contactObject.optString("address1_composite");
                     emailaddress1=contactObject.optString("emailaddress1");
 
 
                     contactsForListView.add("Contact Name: "+fullname+"\n"+"Number: "+mobilephone);
-                    contactsByPhone.put(mobilephone,fullname+":"+birthdate+":"+emailaddress1);
+                    contactsByPhone.put(mobilephone,fullname+":"+addressComposite+":"+emailaddress1);
 
                 }
                 System.out.println("+++++++++++++++++++++HashMap Content"+contactsByPhone.toString()+" "+contactsByPhone.get("423-555-0123"));
