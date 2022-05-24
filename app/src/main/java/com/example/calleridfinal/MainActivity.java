@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout contactsLayout;
     ArrayAdapter adapterForContactsList;
     ProgressDialog progressDialog;
+    Button displayCallLog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -148,7 +149,14 @@ public class MainActivity extends AppCompatActivity {
     private void initializeUI(){
         signInButton = findViewById(R.id.signIn);
         signOutButton = findViewById(R.id.clearCache);
-
+        displayCallLog=findViewById(R.id.displayCallLog);
+        displayCallLog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this,CallLogScreen.class);
+                startActivity(intent);
+            }
+        });
         logTextView = findViewById(R.id.txt_log);
         currentUserTextView = findViewById(R.id.current_user);
         contactsLayout=findViewById(R.id.contactsSection);
