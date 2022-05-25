@@ -6,6 +6,14 @@
     android:layout_height="match_parent"
     android:background="@drawable/call_screen_bg">
 
+    <ImageView
+        android:id="@+id/exitCallScreen"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:src="@drawable/circled_x_50px"
+        app:tint="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -35,7 +43,7 @@
             android:background="#e6ccff"
             android:layout_marginLeft="50sp"
             android:layout_marginRight="60sp"
-            android:padding="55sp"
+            android:padding="60sp"
             android:orientation="vertical"
             >
             <TextView
@@ -52,6 +60,12 @@
                 android:id="@+id/outputContactInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/addContactDynamics"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add Contact in dynamics"
+                android:visibility="gone"/>
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

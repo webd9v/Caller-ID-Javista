@@ -5,7 +5,9 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.CallLog;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import androidx.annotation.Nullable;
@@ -15,12 +17,20 @@ import java.util.ArrayList;
 
 public class CallLogScreen extends AppCompatActivity {
     ListView callsList;
+    ImageView exitCallLog;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.call_log_screen);
         callsList=findViewById(R.id.callsList);
         displayCallLog();
+        exitCallLog=findViewById(R.id.exitCallLog);
+        exitCallLog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
     public void displayCallLog() {
         ArrayList<String> info = new ArrayList<>();

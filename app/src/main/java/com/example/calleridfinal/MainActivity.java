@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
     ListView displayContacts;
     LinearLayout contactsLayout;
     ArrayAdapter adapterForContactsList;
-    ProgressDialog progressDialog;
+//    ProgressDialog progressDialog;
     Button displayCallLog;
 
     @Override
@@ -100,18 +100,19 @@ public class MainActivity extends AppCompatActivity {
                 ContextCompat.checkSelfPermission(this, READ_CALL_LOG);
         if(readContactsPermissionLog != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(MainActivity.this,new String[]{READ_CALL_LOG},2); }
-        progressDialog=new ProgressDialog(this);
-
-        progressDialog.setMessage("Loading your informations!");
-        progressDialog.show();
+//        progressDialog=new ProgressDialog(this);
+//
+//        progressDialog.setMessage("Loading your informations!");
+//        progressDialog.show();
         initializeUI();
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                progressDialog.hide();
-            }
-        },3000);
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//                progressDialog.hide();
+//            }
+//        },3000);
     }
 
 
@@ -378,9 +379,15 @@ public class MainActivity extends AppCompatActivity {
             signOutButton.setEnabled(true);
             currentUserTextView.setText("User: "+account.getUsername());
             contactsLayout.setVisibility(View.VISIBLE);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {displayCallLog.setVisibility(View.VISIBLE);
+                }
+                }, 3000);
         } else {
             signInButton.setEnabled(true);
             signOutButton.setEnabled(false);
+            displayCallLog.setVisibility(View.GONE);
             contactsLayout.setVisibility(View.GONE);
             currentUserTextView.setText("");
             logTextView.setText("Please Sign in to Display your informations!");
