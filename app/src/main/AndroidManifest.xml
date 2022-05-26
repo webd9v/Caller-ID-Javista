@@ -51,5 +51,9 @@
         </receiver>
         <activity android:name=".CallLogScreen"
             android:theme="@style/Theme.CallerIdFinal.NoActionBar"/>
+        <activity android:name=".AddContactScreen"
+            android:theme="@style/Theme.CallerIdFinal.NoActionBar"/>
+        <activity android:name=".SavedContactInfoScreen"
+            android:theme="@style/Theme.CallerIdFinal.NoActionBar"/>
     </application>
 </manifest>

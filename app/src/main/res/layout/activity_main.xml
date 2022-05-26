@@ -68,14 +68,7 @@
             android:visibility="gone"/>
     </LinearLayout>
 
-    <TextView
-        android:text="Getting Graph Data..."
-        android:textColor="#3f3f3f"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:id="@+id/graphData"
-        android:visibility="invisible"/>
+
 
     <TextView
         android:id="@+id/current_user"
@@ -91,8 +84,13 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:orientation="vertical"
-        android:visibility="gone"
+        android:visibility="visible"
         >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -100,12 +98,22 @@
             android:paddingTop="20dp"
             android:textStyle="bold"
             android:textSize="18sp"/>
+
+        <ImageButton
+            android:id="@+id/refreshContacts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/refresh_30px"
+            android:layout_marginTop="9dp"
+            android:layout_marginLeft="10dp"
+            android:backgroundTint="#e6ccff"/>
+        </LinearLayout>
+
         <ListView
             android:id="@+id/contactVolley"
             android:layout_width="342dp"
             android:layout_height="418dp"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
             android:background="@drawable/list_bg"/>
     </LinearLayout>
 

@@ -1,5 +1,6 @@
 package com.example.calleridfinal;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class CallScreen extends AppCompatActivity {
     TextView outputContactInfo;
-//    Button addContactInDynamics;
+    Button addContactInDynamics;
     ImageView exitCallScreen;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -28,12 +29,20 @@ public class CallScreen extends AppCompatActivity {
             }
         });
         boolean isFound=bundle.getBoolean("isFound");
-//        addContactInDynamics=findViewById(R.id.addContactDynamics);
+        addContactInDynamics=findViewById(R.id.addContactDynamics);
         outputContactInfo=(TextView) findViewById(R.id.outputContactInfo);
         if(!isFound) {
             outputContactInfo.setText("Incoming call from: " + number);
             System.out.println("isFound:"+isFound+" number:"+number);
-//            addContactInDynamics.setVisibility(View.VISIBLE);
+            addContactInDynamics.setVisibility(View.VISIBLE);
+            addContactInDynamics.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent(CallScreen.this,AddContactScreen.class);
+                    intent.putExtra("phoneNumber",number);
+                    startActivityForResult(intent,0);
+                }
+            });
         }else{
             String fullname=bundle.getString("fullname");
             String address=bundle.getString("address");
@@ -47,6 +56,20 @@ public class CallScreen extends AppCompatActivity {
             outputContactInfo.setText(fullname+"\n"+number+"\n"+"Address: "+address+"\n"+"Email: "+email);
             System.out.println("isFound:"+isFound+" number:"+number+" name:"+fullname);
 
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode){
+            case 0:{
+                switch (resultCode){
+                    case RESULT_OK:{
+                        finish();
+                    }
+                }
+            }
         }
     }
 }

@@ -1,11 +1,13 @@
 package com.example.calleridfinal;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.CallLog;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -75,5 +77,32 @@ public class CallLogScreen extends AppCompatActivity {
         }
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, info);
         callsList.setAdapter(arrayAdapter);
+
+        ArrayList<String> finalInfo = info;
+        callsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String contact= finalInfo.get(position);
+                String name=contact.split("\n")[1];
+                name=name.split(":")[1].trim();
+                String number=contact.split("\n")[0].split(":")[1].trim();
+                if(name.equals("Unknown")){
+                    Intent intent=new Intent(CallLogScreen.this,AddContactScreen.class);
+                    intent.putExtra("phoneNumber",number);
+                    startActivityForResult(intent,0);
+                }else{
+                    String remainderInfo=MainActivity.contactsByPhone.get(number);
+                    String address=remainderInfo.split(":")[1];
+                    String email=remainderInfo.split(":")[2];
+                    Intent intent=new Intent(CallLogScreen.this,SavedContactInfoScreen.class);
+                    intent.putExtra("phoneNumber",number);
+                    intent.putExtra("name",name);
+                    intent.putExtra("email",email);
+                    intent.putExtra("address",address);
+                    startActivityForResult(intent,1);
+                }
+            }
+        });
     }
+
 }

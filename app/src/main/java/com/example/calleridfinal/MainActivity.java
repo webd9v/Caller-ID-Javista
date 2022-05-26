@@ -37,8 +37,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -64,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
     //Value: PJy8Q~K3ao1ZhdNCuPCgUWopVRaz0Z3bT8CaxaGQ
 
     private static final String TAG = MainActivity.class.getSimpleName();
-
+    ImageButton refreshContacts;
     /* UI & Debugging Variables */
     Button signInButton;
     Button signOutButton;
@@ -150,6 +153,14 @@ public class MainActivity extends AppCompatActivity {
     private void initializeUI(){
         signInButton = findViewById(R.id.signIn);
         signOutButton = findViewById(R.id.clearCache);
+        refreshContacts=findViewById(R.id.refreshContacts);
+        refreshContacts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getContactsSales();
+
+            }
+        });
         displayCallLog=findViewById(R.id.displayCallLog);
         displayCallLog.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -239,7 +250,7 @@ public class MainActivity extends AppCompatActivity {
                 updateUI(authenticationResult.getAccount());
                 /* call graph */
                 callGraphAPI(authenticationResult);
-                getContactsSales(authenticationResult);
+                getContactsSales();
             }
 
             @Override
@@ -261,7 +272,7 @@ public class MainActivity extends AppCompatActivity {
             public void onSuccess(IAuthenticationResult authenticationResult) {
                 Log.d(TAG, "Successfully authenticated");
                 callGraphAPI(authenticationResult);
-                getContactsSales(authenticationResult);
+                getContactsSales();
             }
             @Override
             public void onError(MsalException exception) {
@@ -270,7 +281,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
     }
-    private void getContactsSales(IAuthenticationResult authenticationResult){
+    private void getContactsSales(){
 
 
         RequestQueue queue= Volley.newRequestQueue(this);
@@ -289,6 +300,23 @@ public class MainActivity extends AppCompatActivity {
                 contactsForListView=new ArrayList<>();
                 adapterForContactsList=new ArrayAdapter(getApplicationContext(),R.layout.list_item_style,contactsForListView);
                 displayContacts.setAdapter(adapterForContactsList);
+                displayContacts.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        String contact=contactsForListView.get(position);
+                        String number=contact.split("\n")[1].split(":")[1].trim();
+                        String contactInfoNAE=contactsByPhone.get(number);
+                        String name=contactInfoNAE.split(":")[0];
+                        String address=contactInfoNAE.split(":")[1];
+                        String email=contactInfoNAE.split(":")[2];
+                        Intent intent=new Intent(MainActivity.this,SavedContactInfoScreen.class);
+                        intent.putExtra("phoneNumber",number);
+                        intent.putExtra("name",name);
+                        intent.putExtra("email",email);
+                        intent.putExtra("address",address);
+                        startActivity(intent);
+                    }
+                });
                 System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++Success");
                 JSONArray values = response.optJSONArray("value");
                 JSONObject contactObject;
