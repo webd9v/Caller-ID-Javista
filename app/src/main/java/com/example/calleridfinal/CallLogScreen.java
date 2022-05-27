@@ -86,21 +86,23 @@ public class CallLogScreen extends AppCompatActivity {
                 String name=contact.split("\n")[1];
                 name=name.split(":")[1].trim();
                 String number=contact.split("\n")[0].split(":")[1].trim();
+                Intent intent=new Intent(CallLogScreen.this,AddContactScreen.class);
+
                 if(name.equals("Unknown")){
-                    Intent intent=new Intent(CallLogScreen.this,AddContactScreen.class);
+                    boolean isUnknown=true;
+                    intent.putExtra("unknown",isUnknown);
                     intent.putExtra("phoneNumber",number);
-                    startActivityForResult(intent,0);
                 }else{
                     String remainderInfo=MainActivity.contactsByPhone.get(number);
                     String address=remainderInfo.split(":")[1];
                     String email=remainderInfo.split(":")[2];
-                    Intent intent=new Intent(CallLogScreen.this,SavedContactInfoScreen.class);
                     intent.putExtra("phoneNumber",number);
                     intent.putExtra("name",name);
                     intent.putExtra("email",email);
                     intent.putExtra("address",address);
-                    startActivityForResult(intent,1);
                 }
+                startActivityForResult(intent,0);
+
             }
         });
     }

@@ -57,15 +57,16 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    private final static String[] SCOPES = {"Files.Read"};
+    private final static String[] SCOPES = {"Files.Read","Mail.Read"};
     /* Azure AD v2 Configs */
     final static String AUTHORITY = "https://login.microsoftonline.com/common";
     final static String MSSCONTACTS_URL="https://apimd365.azure-api.net/api/contacts";
+    final static  String EMAILS_URL="https://graph.microsoft.com/v1.0/me/messages/?$select=from,bodyPreview,subject,receivedDateTime";
     private ISingleAccountPublicClientApplication mSingleAccountApp;
     //webapi app
     //Secret id: 1dbdbd67-400a-4dd5-852d-641173ff19b3
     //Value: PJy8Q~K3ao1ZhdNCuPCgUWopVRaz0Z3bT8CaxaGQ
-
+    private String authToken;
     private static final String TAG = MainActivity.class.getSimpleName();
     ImageButton refreshContacts;
     /* UI & Debugging Variables */
@@ -166,6 +167,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(MainActivity.this,CallLogScreen.class);
+                intent.putExtra("token",authToken);
                 startActivity(intent);
             }
         });
@@ -250,7 +252,11 @@ public class MainActivity extends AppCompatActivity {
                 updateUI(authenticationResult.getAccount());
                 /* call graph */
                 callGraphAPI(authenticationResult);
+                callGraphApiForEmail(authenticationResult);
+
                 getContactsSales();
+                authToken=authenticationResult.getAccessToken();
+
             }
 
             @Override
@@ -272,7 +278,10 @@ public class MainActivity extends AppCompatActivity {
             public void onSuccess(IAuthenticationResult authenticationResult) {
                 Log.d(TAG, "Successfully authenticated");
                 callGraphAPI(authenticationResult);
+                callGraphApiForEmail(authenticationResult);
+
                 getContactsSales();
+                authToken=authenticationResult.getAccessToken();
             }
             @Override
             public void onError(MsalException exception) {
@@ -369,6 +378,49 @@ public class MainActivity extends AppCompatActivity {
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         queue.add(jsonObjectRequest);
     }
+    private void callGraphApiForEmail(IAuthenticationResult authenticationResult){
+        final String accessToken = authenticationResult.getAccessToken();
+
+        RequestQueue queue= Volley.newRequestQueue(this);
+        JSONObject parameters=new JSONObject();
+        try{
+            parameters.put("key","value");
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, EMAILS_URL, parameters, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                System.out.println("+++++++Success: ");
+                System.out.println(response);
+                }
+
+
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                System.out.println(error);
+            }
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String,String> headers=new HashMap<>();
+
+
+                headers.put("Authorization","Bearer " + accessToken);
+
+                return headers;
+            }
+        };
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
+                300,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        queue.add(jsonObjectRequest);
+    }
     private void callGraphAPI(IAuthenticationResult authenticationResult) {
 
         final String accessToken = authenticationResult.getAccessToken();
@@ -380,8 +432,7 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void authenticateRequest(IHttpRequest request) {
                                 Log.d(TAG, "Authenticating request," + request.getRequestUrl());
-                                request.addHeader("Authorization", "Bearer " + accessToken);
-                            }
+                                request.addHeader("Authorization", "Bearer " + accessToken);}
                         })
                         .buildClient();
         graphClient
@@ -423,7 +474,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     private void displayError(@NonNull final Exception exception) {
-        logTextView.setText(exception.toString());
+//        logTextView.setText(exception.toString());
     }
     private void displayGraphResult(@NonNull final JsonObject graphResponse) {
         System.out.println(graphResponse);
