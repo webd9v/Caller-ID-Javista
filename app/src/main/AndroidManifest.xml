@@ -55,5 +55,6 @@
             android:theme="@style/Theme.CallerIdFinal.NoActionBar"/>
         <activity android:name=".SavedContactInfoScreen"
             android:theme="@style/Theme.CallerIdFinal.NoActionBar"/>
+        <activity android:name=".AddCallScreen" android:theme="@style/Theme.CallerIdFinal.NoActionBar"/>
     </application>
 </manifest>

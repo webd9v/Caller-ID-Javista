@@ -30,38 +30,54 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView"
+        app:layout_constraintTop_toTopOf="@id/textView"
         app:layout_constraintVertical_bias="0.262"
         tools:layout_editor_absoluteX="-76dp"
         android:gravity="center"
         >
 
         <LinearLayout
-            android:layout_width="381dp"
-            android:layout_height="wrap_content"
+            android:layout_width="374dp"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
+            android:layout_marginLeft="50sp"
+            android:layout_marginRight="60sp"
             android:background="#e6ccff"
+            android:gravity="center"
             android:orientation="vertical"
             android:padding="60sp">
 
             <TextView
-                android:layout_width="210dp"
-                android:layout_height="27dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="top"
                 android:layout_marginLeft="20dp"
-                android:layout_marginBottom="30sp"
+                android:layout_marginBottom="20sp"
                 android:drawableRight="@drawable/info_24px"
-                android:text="Contact Information  "
+                android:text="Add Phone Call  "
                 android:textSize="19sp"
                 android:textStyle="bold"
 
-                />
+                /><TextView
+            android:id="@+id/alertText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="20sp"
+            android:text="Fill all the fields!"
+            android:textSize="17sp"
+            android:textStyle="italic"
+            android:textColor="@android:color/holo_red_dark"
+            tools:targetApi="ice_cream_sandwich"
+            android:visibility="gone"/>
 
             <TableLayout
-                android:layout_width="305dp"
+                android:layout_width="229dp"
                 android:layout_height="wrap_content"
-                android:stretchColumns="1"
-                >
+                android:stretchColumns="0">
+
+
 
                 <TableRow>
 
@@ -69,61 +85,43 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_column="0"
-                        android:text="First Name: "
+                        android:text="Mobile Phone: "
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/firstnameField"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_column="1"
-                        android:background="#fff"
-
-                        />
-
-
-                </TableRow>
-
-                <TableRow android:layout_marginTop="10dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_column="0"
-                        android:text="Last Name: "
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/lastnameField"
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_column="1"
-                        android:background="#fff"
-                       />
-
-                </TableRow>
-
-                <TableRow android:layout_marginTop="10dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_column="0"
-                        android:text="Phone: "
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                    <TextView
+                    <EditText
                         android:id="@+id/numberField"
 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_column="1"
                         android:background="#fff"
-                        android:textColor="#777" />
+                        android:inputType="number"
+                        android:hint="Number"
+                        android:textColor="#777"
+                        android:enabled="false"/>
+
+                </TableRow>
+                <TableRow android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"
+                        android:text="Duration: "
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/duration"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:background="#fff"
+                        android:hint="Duration"
+                        android:enabled="false"
+
+                        />
 
                 </TableRow>
 
@@ -133,65 +131,49 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_column="0"
-                        android:text="Email: "
+                        android:text="Subject: "
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/emailField"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                    <EditText
+                        android:id="@+id/subject"
+
+                        android:layout_width="120dp"
+                        android:layout_height="match_parent"
                         android:layout_column="1"
-                        android:background="#fff" />
+                        android:background="#fff"
+                        android:hint="Subject"
+                        />
 
                 </TableRow>
-
                 <TableRow android:layout_marginTop="10dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_column="0"
-                        android:text="Address: "
+                        android:text="Description: "
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/addressField"
+                    <EditText
+                        android:id="@+id/description"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_column="1"
-                        android:background="#fff"/>
+                        android:background="#fff"
+                        android:hint="description"
+
+                        />
 
                 </TableRow>
             </TableLayout>
-
-            <LinearLayout
-                android:id="@+id/linearL1"
+            <Button
+                android:id="@+id/addCall"
                 android:layout_width="wrap_content"
-                android:layout_height="150dp"
-                android:orientation="vertical"
-                android:visibility="gone"
-                android:layout_marginTop="10dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Emails:"
-                    android:textSize="19sp"
-                    android:textStyle="bold" />
-
-                <ScrollView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:id="@+id/emails"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </ScrollView>
-            </LinearLayout>
+                android:layout_height="wrap_content"
+                android:text="Add"
+                android:layout_marginTop="10dp"/>
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

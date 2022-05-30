@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
     /* UI & Debugging Variables */
     Button signInButton;
     Button signOutButton;
-
+    JSONArray emailResponse;
     TextView logTextView;
     TextView currentUserTextView;
     static HashMap<String,String> contactsByPhone;
@@ -158,8 +158,10 @@ public class MainActivity extends AppCompatActivity {
         refreshContacts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getContactsSales();
-
+                if (mSingleAccountApp == null){
+                    return;
+                }
+                mSingleAccountApp.acquireTokenSilentAsync(SCOPES, AUTHORITY, getAuthSilentCallback());
             }
         });
         displayCallLog=findViewById(R.id.displayCallLog);
@@ -318,12 +320,55 @@ public class MainActivity extends AppCompatActivity {
                         String name=contactInfoNAE.split(":")[0];
                         String address=contactInfoNAE.split(":")[1];
                         String email=contactInfoNAE.split(":")[2];
+                        System.out.println("Email from hash: "+email);
                         Intent intent=new Intent(MainActivity.this,SavedContactInfoScreen.class);
                         intent.putExtra("phoneNumber",number);
                         intent.putExtra("name",name);
                         intent.putExtra("email",email);
                         intent.putExtra("address",address);
+                        HashMap<String,String> emails=new HashMap<>();
+                        ArrayList<String> ids=new ArrayList<>();
+                        String dateReceived,bodyPreview,subject,objId;
+                        JSONArray valuesEmails=emailResponse;
+                        int i=0;
+                        int j;
+                        if(valuesEmails!=null){
+                            for(j=0;j<valuesEmails.length() || j<100;j++){
+                                try {
+                                    JSONObject mailInfo=valuesEmails.optJSONObject(j);
+                                    JSONObject from=mailInfo.optJSONObject("from");
+                                    JSONObject emailAddressObj=from.optJSONObject("emailAddress");
+                                    String emailAddress=emailAddressObj.optString("address");
+                                    if(emailAddress.equals(email)){
+                                        dateReceived=mailInfo.optString("receivedDateTime");
+                                        bodyPreview=mailInfo.optString("bodyPreview");
+                                        subject=mailInfo.optString("subject");
+                                        objId=mailInfo.getString("id");
+                                        emails.put(objId,dateReceived+":%"+subject+":%"+bodyPreview);
+                                        System.out.println("Item in hash:"+emails.get(objId));
+                                        ids.add(objId);
+                                        i++;
+
+                                    }
+                                    if (i == 2) {
+                                        break;
+                                    }
+                                }catch (Exception e){
+                                    e.printStackTrace();
+                                    System.out.println("Counter: "+i);
+                                    break;
+                                }
+
+                        }
+                        intent.putExtra("emails",emails);
+                        intent.putExtra("ids",ids);
                         startActivity(intent);
+                    }else{
+                            if (mSingleAccountApp == null){
+                                return;
+                            }
+                            mSingleAccountApp.acquireTokenSilentAsync(SCOPES, AUTHORITY, getAuthSilentCallback());
+                        }
                     }
                 });
                 System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++Success");
@@ -393,8 +438,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 System.out.println("+++++++Success: ");
-                System.out.println(response);
-                }
+                emailResponse=response.optJSONArray("value");
+                System.out.println(emailResponse);
+
+            }
 
 
 
