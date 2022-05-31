@@ -90,11 +90,13 @@ public class InterceptCall extends BroadcastReceiver {
 
                         double duration=(double) seconds/60;
                         System.out.println("+++++++duration:"+duration);
-
+                        String contactInfo=MainActivity.contactsByPhone.get(incomingNumber);
+                        String contactId=contactInfo.split(":")[3];
                         System.out.println("Duration:"+duration);
                         Intent intent1 = new Intent(context, AddCallScreen.class);
                         intent1.putExtra("duration",duration);
                         intent1.putExtra("phoneNumber", incomingNumber);
+                        intent1.putExtra("contactid",contactId);
                         intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
                         context.startActivity(intent1);

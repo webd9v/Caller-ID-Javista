@@ -376,17 +376,17 @@ public class MainActivity extends AppCompatActivity {
                 JSONObject contactObject;
 
                 //mobilephone , fullname , addressComposite, emailaddress1
-                String mobilephone,fullname,addressComposite,emailaddress1;
+                String mobilephone,fullname,addressComposite,emailaddress1,contactId;
                 for(int i = 0;i<values.length();i++){
                     contactObject=values.optJSONObject(i);
                     mobilephone=contactObject.optString("mobilephone");
                     fullname=contactObject.optString("fullname");
                     addressComposite=contactObject.optString("address1_composite");
                     emailaddress1=contactObject.optString("emailaddress1");
-
+                    contactId=contactObject.optString("contactid");
 
                     contactsForListView.add("Contact Name: "+fullname+"\n"+"Number: "+mobilephone);
-                    contactsByPhone.put(mobilephone,fullname+":"+addressComposite+":"+emailaddress1);
+                    contactsByPhone.put(mobilephone,fullname+":"+addressComposite+":"+emailaddress1+":"+contactId);
 
                 }
                 System.out.println("+++++++++++++++++++++HashMap Content"+contactsByPhone.toString()+" "+contactsByPhone.get("423-555-0123"));
