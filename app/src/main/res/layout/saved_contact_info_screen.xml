@@ -27,17 +27,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="400dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView"
-        app:layout_constraintVertical_bias="0.262"
-        tools:layout_editor_absoluteX="-76dp"
         android:gravity="center"
-        >
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView"
+        app:layout_constraintVertical_bias="0.262">
 
         <LinearLayout
-            android:layout_width="381dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="#e6ccff"
@@ -58,10 +58,9 @@
                 />
 
             <TableLayout
-                android:layout_width="305dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:stretchColumns="1"
-                >
+                android:stretchColumns="1">
 
                 <TableRow>
 
@@ -78,7 +77,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_column="1"
-                        android:background="#fff"
 
                         />
 
@@ -100,9 +98,7 @@
 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_column="1"
-                        android:background="#fff"
-                       />
+                        android:layout_column="1" />
 
                 </TableRow>
 
@@ -122,17 +118,20 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_column="1"
-                        android:background="#fff"
                         android:textColor="#777" />
 
                 </TableRow>
 
-                <TableRow android:layout_marginTop="10dp">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    >
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_column="0"
                         android:text="Email: "
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -141,10 +140,10 @@
                         android:id="@+id/emailField"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_column="1"
-                        android:background="#fff" />
+                        android:layout_marginLeft="40dp"
+                        />
 
-                </TableRow>
+                </LinearLayout>
 
                 <TableRow android:layout_marginTop="10dp">
 
@@ -160,8 +159,7 @@
                         android:id="@+id/addressField"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_column="1"
-                        android:background="#fff"/>
+                        android:layout_column="1" />
 
                 </TableRow>
             </TableLayout>

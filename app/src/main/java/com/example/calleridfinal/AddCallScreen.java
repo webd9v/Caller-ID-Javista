@@ -79,14 +79,7 @@ public class AddCallScreen extends AppCompatActivity {
                     String subject=subjectField.getText().toString();
                     String description=descriptionField.getText().toString();
                     addCalls(phoneNumber,durationString.split(" ")[0],subject,description,contactIdRequest);
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(AddCallScreen.this,"Call Added!",Toast.LENGTH_LONG).show();
-//                            progressDialog.hide();
-                            finish();
-                        }
-                    },2000);
+
                 }
             }
         });

@@ -333,10 +333,12 @@ public class MainActivity extends AppCompatActivity {
                         int i=0;
                         int j;
                         if(valuesEmails!=null){
-                            for(j=0;j<valuesEmails.length() || j<100;j++){
+                            for(j=0;j<valuesEmails.length();j++){
                                 try {
                                     JSONObject mailInfo=valuesEmails.optJSONObject(j);
+                                    System.out.println("+++mailInfo:"+mailInfo+"\nvaluesEmails"+valuesEmails);
                                     JSONObject from=mailInfo.optJSONObject("from");
+                                    System.out.println("+++from"+from);
                                     JSONObject emailAddressObj=from.optJSONObject("emailAddress");
                                     String emailAddress=emailAddressObj.optString("address");
                                     if(emailAddress.equals(email)){
