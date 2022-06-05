@@ -333,7 +333,7 @@ public class MainActivity extends AppCompatActivity {
                         int i=0;
                         int j;
                         if(valuesEmails!=null){
-                            for(j=0;j<valuesEmails.length();j++){
+                            for(j=0;j<valuesEmails.length() || j<100;j++){
                                 try {
                                     JSONObject mailInfo=valuesEmails.optJSONObject(j);
                                     System.out.println("+++mailInfo:"+mailInfo+"\nvaluesEmails"+valuesEmails);
