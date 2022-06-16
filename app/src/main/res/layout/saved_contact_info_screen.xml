@@ -176,19 +176,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Emails:"
+                    android:text="Recent Emails:"
                     android:textSize="19sp"
                     android:textStyle="bold" />
 
-                <ScrollView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
 
-                    <TextView
+                    <ListView
                         android:id="@+id/emails"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
-                </ScrollView>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

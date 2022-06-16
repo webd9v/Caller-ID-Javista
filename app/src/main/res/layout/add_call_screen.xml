@@ -26,39 +26,36 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="374dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="@id/textView"
-        app:layout_constraintVertical_bias="0.262"
-        tools:layout_editor_absoluteX="-76dp"
+        android:layout_gravity="center"
+        android:background="#e6ccff"
         android:gravity="center"
-        >
+        android:orientation="vertical"
+        android:padding="60sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.261">
 
-        <LinearLayout
-            android:layout_width="374dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_marginLeft="50sp"
-            android:layout_marginRight="60sp"
-            android:background="#e6ccff"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="60sp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="20sp"
+            android:drawableRight="@drawable/info_24px"
+            android:text="Add Phone Call  "
+            android:textSize="19sp"
+            android:textStyle="bold"
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="top"
-                android:layout_marginLeft="20dp"
-                android:layout_marginBottom="20sp"
-                android:drawableRight="@drawable/info_24px"
-                android:text="Add Phone Call  "
-                android:textSize="19sp"
-                android:textStyle="bold"
+            />
 
-                /><TextView
+        <TextView
             android:id="@+id/alertText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -66,114 +63,112 @@
             android:layout_marginLeft="20dp"
             android:layout_marginBottom="20sp"
             android:text="Fill all the fields!"
+            android:textColor="@android:color/holo_red_dark"
             android:textSize="17sp"
             android:textStyle="italic"
-            android:textColor="@android:color/holo_red_dark"
-            tools:targetApi="ice_cream_sandwich"
-            android:visibility="gone"/>
+            android:visibility="gone"
+            tools:targetApi="ice_cream_sandwich" />
 
-            <TableLayout
-                android:layout_width="229dp"
-                android:layout_height="wrap_content"
-                android:stretchColumns="0">
-
+        <TableLayout
+            android:layout_width="229dp"
+            android:layout_height="wrap_content"
+            android:stretchColumns="0">
 
 
-                <TableRow>
+            <TableRow>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_column="0"
-                        android:text="Mobile Phone: "
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:text="Number: "
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
-                    <EditText
-                        android:id="@+id/numberField"
+                <EditText
+                    android:id="@+id/numberField"
 
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_column="1"
-                        android:background="#fff"
-                        android:inputType="number"
-                        android:hint="Number"
-                        android:textColor="#777"
-                        android:enabled="false"/>
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:background="#fff"
+                    android:enabled="false"
+                    android:hint="Number"
+                    android:inputType="number"
+                    android:textColor="#777" />
 
-                </TableRow>
-                <TableRow android:layout_marginTop="10dp">
+            </TableRow>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_column="0"
-                        android:text="Duration: "
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
+            <TableRow android:layout_marginTop="10dp">
 
-                    <EditText
-                        android:id="@+id/duration"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_column="1"
-                        android:background="#fff"
-                        android:hint="Duration"
-                        android:enabled="false"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:text="Duration: "
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
-                        />
+                <EditText
+                    android:id="@+id/duration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:background="#fff"
+                    android:enabled="false"
+                    android:hint="Duration"
 
-                </TableRow>
+                    />
 
-                <TableRow android:layout_marginTop="10dp">
+            </TableRow>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_column="0"
-                        android:text="Subject: "
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
+            <TableRow android:layout_marginTop="10dp">
 
-                    <EditText
-                        android:id="@+id/subject"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:text="Subject: "
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
-                        android:layout_width="120dp"
-                        android:layout_height="match_parent"
-                        android:layout_column="1"
-                        android:background="#fff"
-                        android:hint="Subject"
-                        />
+                <EditText
+                    android:id="@+id/subject"
 
-                </TableRow>
-                <TableRow android:layout_marginTop="10dp">
+                    android:layout_width="120dp"
+                    android:layout_height="match_parent"
+                    android:layout_column="1"
+                    android:background="#fff"
+                    android:hint="Subject" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_column="0"
-                        android:text="Description: "
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
+            </TableRow>
 
-                    <EditText
-                        android:id="@+id/description"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_column="1"
-                        android:background="#fff"
-                        android:hint="description"
 
-                        />
+        </TableLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Description: "
+            android:layout_marginTop="15dp"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+        <EditText
+            android:id="@+id/description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:layout_marginTop="7dp"
+            android:paddingLeft="9dp"
+            android:paddingRight="9dp"
+            android:hint="description"
 
-                </TableRow>
-            </TableLayout>
-            <Button
-                android:id="@+id/addCall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Add"
-                android:layout_marginTop="10dp"/>
-        </LinearLayout>
+            />
+
+        <Button
+            android:id="@+id/addCall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Add" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

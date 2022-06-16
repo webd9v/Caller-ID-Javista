@@ -524,6 +524,7 @@ public class MainActivity extends AppCompatActivity {
     }
     private void displayError(@NonNull final Exception exception) {
 //        logTextView.setText(exception.toString());
+        logTextView.setText("Session Expired ! Please sign in again.");
     }
     private void displayGraphResult(@NonNull final JsonObject graphResponse) {
         System.out.println(graphResponse);

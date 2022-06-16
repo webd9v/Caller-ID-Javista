@@ -79,6 +79,7 @@ public class AddCallScreen extends AppCompatActivity {
                     String subject=subjectField.getText().toString();
                     String description=descriptionField.getText().toString();
                     addCalls(phoneNumber,durationString.split(" ")[0],subject,description,contactIdRequest);
+                    Toast.makeText(AddCallScreen.this,"Call Added!",Toast.LENGTH_LONG).show();
 
                 }
             }
@@ -96,6 +97,7 @@ public class AddCallScreen extends AppCompatActivity {
             body.put("subject",subject);
             body.put("description",description);
             body.put("directioncode",false);
+            body.put("regardingobjectid_contact@odata.bind",contactId);
             JSONArray jsonArray=new JSONArray();
             JSONObject obj=new JSONObject();
             obj.put("partyid_contact@odata.bind",contactId);
