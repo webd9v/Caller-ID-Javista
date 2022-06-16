@@ -28,6 +28,7 @@ public class SavedContactInfoScreen extends AppCompatActivity {
         String number=bundle.getString("phoneNumber");
         String email=bundle.getString("email");
         String address=bundle.getString("address");
+        System.out.println("Name: "+name+"\n Number: "+number+"\nEmail: "+email+"\nAddress: "+address);
         ArrayList<String> ids= (ArrayList<String>) bundle.get("ids");
         HashMap<String,String> emails= (HashMap<String, String>) bundle.get("emails");
         phoneNumberField=findViewById(R.id.numberField);
@@ -50,10 +51,17 @@ public class SavedContactInfoScreen extends AppCompatActivity {
         if(address==null || address.equals("null")){
             addressField.setText("Unknown");
             addressField.setVisibility(View.GONE);
-
+            TextView addressText=findViewById(R.id.addressText);
+            addressText.setVisibility(View.GONE);
         }else{
             addressField.setText(address);
 
+        }
+        if(number==null || number.equals("null")){
+            phoneNumberField.setText("Unknown");
+            phoneNumberField.setVisibility(View.GONE);
+            TextView phoneText=findViewById(R.id.phoneText);
+            phoneText.setVisibility(View.GONE);
         }
 //        TextView emailsDetail=findViewById(R.id.emails);
         ListView emailsListView=findViewById(R.id.emails);

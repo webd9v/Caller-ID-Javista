@@ -386,8 +386,13 @@ public class MainActivity extends AppCompatActivity {
                     addressComposite=contactObject.optString("address1_composite");
                     emailaddress1=contactObject.optString("emailaddress1");
                     contactId=contactObject.optString("contactid");
+                    if(mobilephone==null || mobilephone.equals("null")){
+                        contactsForListView.add("Contact Name: "+fullname+"\n"+"Number: N/A");
 
-                    contactsForListView.add("Contact Name: "+fullname+"\n"+"Number: "+mobilephone);
+                    }else{
+                        contactsForListView.add("Contact Name: "+fullname+"\n"+"Number: "+mobilephone);
+
+                    }
                     contactsByPhone.put(mobilephone,fullname+":"+addressComposite+":"+emailaddress1+":"+contactId);
 
                 }
